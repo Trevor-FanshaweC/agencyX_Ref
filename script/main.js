@@ -6,6 +6,22 @@
 		appliedClass;
 
 	function changeElements() {
+		let subImages = document.querySelector('.subImagesContainer');
+		let objectIndex = dynamicContent[this.id];
+
+		while (subImages.firstChild) {
+			subImages.removeChild(subImages.firstChild);
+		}
+
+		for (let i = 0; i < objectIndex.images.length; i++) {
+			let newSubImg = document.createElement('img');
+
+			newSubImg.classList.add('thumb');
+
+			newSubImg.src = "images/" + objectIndex.images[i];
+			subImages.appendChild(newSubImg);
+		}
+
 		theSubhead.classList.remove(appliedClass);
 		theHeading.classList.remove(appliedClass);
 
@@ -14,9 +30,9 @@
 		theHeading.classList.add(this.id);
 
 		appliedClass = this.id;
-		
-		theSubhead.firstChild.nodeValue = dynamicContent[this.id].headline;
-		theSeasonText.firstChild.nodeValue = dynamicContent[this.id].text;
+
+		theSubhead.firstChild.nodeValue = objectIndex.headline;
+		theSeasonText.firstChild.nodeValue = objectIndex.text;
 	}
 
 
@@ -28,5 +44,5 @@
 	theSubhead.firstChild.nodeValue = dynamicContent['spring'].headline;
 	theSeasonText.firstChild.nodeValue = dynamicContent['spring'].text;
 	theHeading.classList.add('spring');
-	
+
 })();
