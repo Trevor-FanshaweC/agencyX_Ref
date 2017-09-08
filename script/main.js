@@ -13,14 +13,26 @@
 			subImages.removeChild(subImages.firstChild);
 		}
 
-		for (let i = 0; i < objectIndex.images.length; i++) {
+		/* -- OLD WAY OF LOOPING THRU STUFF ---*/
+
+		// for (let i = 0; i < objectIndex.images.length; i++) {
+			// let newSubImg = document.createElement('img');
+			//
+			// newSubImg.classList.add('thumb');
+			//
+			// newSubImg.src = "images/" + objectIndex.images[i];
+			// subImages.appendChild(newSubImg);
+		// }
+
+		/* -- new and improved way of looping thru stuff -- */
+		objectIndex.images.forEach(function(image, index) {
 			let newSubImg = document.createElement('img');
 
 			newSubImg.classList.add('thumb');
 
-			newSubImg.src = "images/" + objectIndex.images[i];
+			newSubImg.src = "images/" + objectIndex.images[index];
 			subImages.appendChild(newSubImg);
-		}
+		});
 
 		theSubhead.classList.remove(appliedClass);
 		theHeading.classList.remove(appliedClass);
@@ -35,8 +47,8 @@
 		theSeasonText.firstChild.nodeValue = objectIndex.text;
 	}
 
-
-	[].forEach.call(theImages, function(image) {
+	theImages.forEach(function(image, index) {
+		//console.log(image, index);
 		image.addEventListener('click', changeElements, false);
 	});
 
