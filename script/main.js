@@ -15,19 +15,19 @@
 		}
 
 		// add the current season's thumnail images
-		for (let i = 0; i < objectIndex.images.length; i++) {
+		objectIndex.images.forEach(function(image, index) {
 			let newSubImg = document.createElement('img');
 
 			newSubImg.classList.add('thumb');
-			newSubImg.src = "images/" + objectIndex.images[i];
-			newSubImg.dataset.index = i;
+			newSubImg.src = "images/" + objectIndex.images[index];
+			newSubImg.dataset.index = index;
 
 			// add an event listener to trigger the lightbox / larger view
-			newSubImg.addEventListener('click', function() { popLightbox(i, objectIndex); }, false);
+			newSubImg.addEventListener('click', function() { popLightbox(index, objectIndex); }, false);
 
 			// add it to the page
 			subImages.appendChild(newSubImg);
-		}
+		});
 
 		theSubhead.classList.remove(appliedClass);
 		theHeading.classList.remove(appliedClass);
@@ -42,7 +42,7 @@
 		theSeasonText.firstChild.nodeValue = objectIndex.text;
 	}
 
-	[].forEach.call(theImages, function(image) {
+	theImages.forEach(function(image, index) {
 		image.addEventListener('click', changeElements, false);
 	});
 
